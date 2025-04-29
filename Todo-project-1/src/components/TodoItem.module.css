@@ -1,0 +1,30 @@
+.container {
+  margin-top: 20px;
+}
+
+.styleRow {
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.styleBtn button {
+  width: 100%;
+}
+
+.col6 {
+  font-weight: bold;
+  color: palevioletred;
+  text-align: left;
+}
+
+.col4 {
+  color: #555;
+}
+
+.btnDanger {
+  background-color: red;
+  color: white;
+  border: none;
+}

@@ -1,0 +1,41 @@
+.container {
+  margin-top: 20px;
+}
+
+.styleRow {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.col-6 input,
+.col-4 input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.styleBtn {
+  width: 100%;
+  padding: 12px;
+  background-color: #28a745 !important; /* Green color for the button */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.styleBtn:hover {
+  background-color: #218838 !important; /* Darker green when hovered */
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus {
+  outline: none;
+  border-color: #007bff; /* Blue color on focus */
+}

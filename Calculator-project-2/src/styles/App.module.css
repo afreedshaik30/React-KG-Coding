@@ -1,0 +1,18 @@
+:root {
+  --border-radius: 1px;
+  --border-style: 2px solid teal;
+}
+/*  if you define CSS variables inside :root,they are global,
+    and you can access them from anywhere — even in Display.module.css */
+
+* {
+  margin: 15px;
+}
+
+.calculator {
+  border-radius: var(--border-radius);
+  border: var(--border-style);
+  width: 300px;
+  height: auto;
+  padding: 20px;
+}

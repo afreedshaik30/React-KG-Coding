@@ -1,0 +1,32 @@
+.navbar {
+  background: repeating-linear-gradient(#3a0156 20px);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  border-bottom: 6px solid #ea7300;
+}
+
+.navbar > h1 {
+  font-size: 30px;
+  color: #ea7300;
+  margin-left: 50px;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-links > a {
+  display: flex;
+  align-items: center;
+
+  font-size: 20px;
+  font-weight: 600;
+
+  color: #ea7300;
+  text-decoration: none;
+  padding: 0 15px;
+}

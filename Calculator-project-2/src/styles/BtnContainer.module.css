@@ -1,0 +1,13 @@
+.btnContainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btnEle {
+  width: 45px;
+  height: 45px;
+  margin: 10px;
+  border-radius: var(--border-radius);
+  border: var(--border-style);
+}
