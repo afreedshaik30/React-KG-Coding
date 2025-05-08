@@ -1,18 +1,34 @@
-import React from "react";
+import React, { useContext } from "react";
+import '../App.css'
+import { MdOutlineDeleteForever } from "react-icons/md";
+import { BiLike } from "react-icons/bi";
+import { PostListContext } from "../store/post-list-store";
 
-const Post = () => {
+const Post = ({postData}) => {
+ 
+  const { deletePost } = useContext(PostListContext);
+
   return (
-    <div class="card" style={{width: '18rem'}}>
-      {/* <img src="..." class="card-img-top" alt="..." /> */}
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card’s content.
+    <div className="card post-card">
+      {/* <img src="..." className="card-img-top" alt="..." /> */}
+      <div className="card-body">
+        <h5 className="card-title">{postData.title}
+        
+        <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+        onClick={() => deletePost(postData.id)}>
+              <MdOutlineDeleteForever style={{ fontSize: '1.5rem'}}/>
+        </span>
+        </h5>
+        <p className="card-text">{postData.body}</p>
+        <p className='card-text'>
+          <span className="badge rounded-pill text-bg-primary" style={{ fontSize: '1.0rem' }}
+          ><BiLike  style={{ fontSize: '1.1rem'}} /> {postData.reactions}</span>
         </p>
-        <a href="#" class="btn btn-primary">
-          Go somewhere
-        </a>
+      </div>
+      <div className="alert alert-info reactions" role="alert">   
+        {
+          postData.tags.map((tg) => <span key={tg} className="badge rounded-pill text-bg-info hashTag">{"#"+tg}</span>)
+        }
       </div>
     </div>
   );
