@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import '../App.css'
 import { MdOutlineDeleteForever } from "react-icons/md";
-import { BiLike } from "react-icons/bi";
+import { BiLike,BiDislike } from "react-icons/bi";
 import { PostListContext } from "../store/post-list-store";
 
 const Post = ({postData}) => {
@@ -21,9 +21,11 @@ const Post = ({postData}) => {
         </h5>
         <p className="card-text">{postData.body}</p>
         <p className='card-text'>
-          <span className="badge rounded-pill text-bg-primary" style={{ fontSize: '1.0rem' }}
-          ><BiLike  style={{ fontSize: '1.1rem'}} /> {postData.reactions}</span>
-        </p>
+  <span className="badge pill text-bg-primary" style={{ fontSize: '1.0rem' }}>
+    <BiLike style={{ fontSize: '1.1rem' }} /> Likes: {postData.reactions.likes}<br/>
+    <BiDislike style={{ fontSize: '1.1rem' }}/>  Dislikes: {postData.reactions.dislikes}
+  </span>
+</p>
       </div>
       <div className="alert alert-info reactions" role="alert">   
         {

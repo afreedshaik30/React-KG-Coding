@@ -7,7 +7,7 @@
 }
 
 .sideBar {
-  min-height: 660px;
+  min-height: 800px;
 }
 
 .post-card {
@@ -28,4 +28,15 @@
   width: 80%;
   margin-top: 30px;
   margin-left: 10%;
+}
+
+.msg {
+  margin: 180px;
+  font-weight: 200;
+}
+
+.msg > h1 {
+  color: black;
+  font-size: 100px;
+  font-weight: 200;
 }
