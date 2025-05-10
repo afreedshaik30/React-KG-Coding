@@ -3,3 +3,7 @@ body {
   border: 5px solid salmon;
   padding: 100px;
 }
+
+.heading {
+  color: blueviolet;
+}
