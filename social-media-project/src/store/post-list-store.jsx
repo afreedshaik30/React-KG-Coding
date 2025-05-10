@@ -7,23 +7,22 @@ export const PostListContext = createContext({
     deletePost : () => {}
 });
 
-const reducer = (currPostListState,action) =>{
-    let newPostList = currPostListState
-    switch (action.type) {
-        case 'DELETE_POST':
-            newPostList = currPostListState.filter(
-                (post) => post.id !== action.payload.postId
-            );    
-            return newPostList;
-        case 'ADD_POST':
-            newPostList = [action.payload,...currPostListState] 
-            return newPostList;
-        case 'ADD_MULTIPLE_POSTS':
-            newPostList = action.payload.posts;
-            return newPostList;   
-        default:
-            return newPostList;
-    }
+const reducer = (currPostListState, action) => {
+  switch (action.type) {
+    case 'DELETE_POST':
+      return currPostListState.filter(
+        (post) => post.id !== action.payload.postId
+      );
+
+    case 'ADD_POST':
+      return [action.payload, ...currPostListState];
+
+    case 'ADD_MULTIPLE_POSTS':
+      return [...action.payload.posts]; // Ensure new array reference
+
+    default:
+      return currPostListState; // Return unchanged state
+  }
 };
 
 // const DEFAULT_POST_LIST = [{
