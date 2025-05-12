@@ -1,10 +1,16 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useCallback, useReducer, useState, useEffect } from "react";
+
+// JSON.stringify() ➡️ Converts a JavaScript Object ➡️ into a JSON string.
+
+// JSON.parse() ➡️ Converts a JSON string ➡️ into a JavaScript Object.
+
 
 export const PostListContext = createContext({
     postListState : [],
     addPost : () => {},
-    addMultiplePosts: () => {},
-    deletePost : () => {}
+    // addMultiplePosts: () => {},
+    deletePost : () => {},
+    fetching : false
 });
 
 const reducer = (currPostListState, action) => {
@@ -38,18 +44,11 @@ const PostListContextProvider = ({children}) => {
 
     const [postListState,dispatch] = useReducer(reducer,[]);
 
-    const addPost = (userId,postTitle,postBody,reactions,tags) => {
+    const addPost = (post) => {
     //    console.log(userId,postTitle,postBody,reactions,tags);
           dispatch({
             type : 'ADD_POST',
-            payload :     {
-                id : Date.now() ,
-                title : postTitle,
-                body : postBody,
-                reactions : reactions,
-                userId : userId,
-                tags : tags,
-            }
+            payload : post
           })
     }
 
@@ -62,16 +61,50 @@ const PostListContextProvider = ({children}) => {
         })
     }
 
-    const deletePost = (postId) => {
+    const deletePost = useCallback( (postId) => {
         console.log(`deleted post : ${postId}`);
         dispatch({
             type : 'DELETE_POST',
             payload : { postId },
         })
-    }
+    },[dispatch])
+
+
+      const [fetching, setFetching] = useState(true);
+      const URL = 'https://dummyjson.com/posts'
+      useEffect(() => {
+            // setFetching(true)
+            // console.log('1. fetching started');
+
+          // 42. Advanced useEffect using AbortController()  
+          const controller = new AbortController();
+          const signal = controller.signal;
+
+          fetch(URL,{signal})
+            .then(resp => resp.json())
+            .then(data => {
+              addMultiplePosts(data.posts);
+              setFetching(false);
+              // console.log('3. fetching returned');
+            })
+          // console.log('2. fetching ended');
+            .catch((error) => {
+                 if (error.name === 'AbortError') {
+                      console.log('Fetch aborted intentionally.');
+                 } else {
+                      console.error('Failed to fetch posts:', error);
+                 }
+            });
+
+          // 41.useEffect Hook Cleanup
+          return () => {
+            // console.log("Cleaning up useEffect Before this Component Dying.");
+            controller.abort();
+          }
+      },[])
 
   return (
-    <PostListContext.Provider value={{ postListState, addPost, addMultiplePosts, deletePost }}> 
+    <PostListContext.Provider value={{ postListState, addPost, deletePost, fetching }}> 
         {children}
     </PostListContext.Provider>
   )

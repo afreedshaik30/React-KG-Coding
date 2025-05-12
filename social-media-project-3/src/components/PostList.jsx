@@ -1,11 +1,11 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext } from "react";
 import Post from "./Post";
 import Msg from "./Msg";
 import { PostListContext } from "../store/post-list-store";
 import LoadingSpinner from "./LoadingSpinner";
 
 const PostList = () => {
-  const { postListState,addMultiplePosts } = useContext(PostListContext);
+  const { postListState, fetching } = useContext(PostListContext);
 
   // const [dataFetch,setDataFetch] = useState(false);
 
@@ -32,34 +32,7 @@ const PostList = () => {
     //     console.error("Failed to fetch posts:", error);
     //   });
   // };
-  
-      const [fetching, setFetching] = useState(true);
-
-      const URL = 'https://dummyjson.com/posts'
-      useEffect(() => {
-            // setFetching(true)
-            // console.log('1. fetching started');
-
-          // 42. Advanced useEffect using AbortController()  
-          const contoller = new AbortController();
-          const signal = contoller.signal;
-
-          fetch(URL,{signal})
-            .then(resp => resp.json())
-            .then(data => {
-              addMultiplePosts(data.posts);
-              setFetching(false);
-              // console.log('3. fetching returned');
-            })
-          // console.log('2. fetching ended');
-
-          // 41.useEffect Hook Cleanup
-          return () => {
-            console.log("Cleaning up useEffect Before this Component Dying.");
-            contoller.abort();
-          }
-      },[])
-   
+     
   return (
     <>
       {fetching && <LoadingSpinner/>}
