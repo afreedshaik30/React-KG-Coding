@@ -23,7 +23,7 @@ const Banner = () => {
 
         <h1
           className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 md:mb-6
-        font-[Great+Vibes] bg-gradient-to-r from-pink-200 via-rose-250 to-rose-300 bg-clip-text text-transparent drop-shadow-2xl animate-fad    e-in"
+        font-[Great+Vibes] bg-gradient-to-r from-pink-200 via-rose-250 to-rose-300 bg-clip-text text-transparent drop-shadow-2xl animate-fade-in"
         >
           The Royal Spa & Saloon
         </h1>
@@ -43,12 +43,13 @@ const Banner = () => {
 
         {/* Button */}
         <div className="mt-8 flex justify-center">
-  <button className="flex items-center gap-2 bg-pink-500 hover:bg-pink-600 text-white text-lg md:text-xl font-semibold px-6 md:px-8 py-3 rounded shadow-lg border border-white hover:scale-105 transition-all duration-300 font-[Poppins]">
-    <FaCalendarAlt className="text-xl" />
-    <span>Book Appointment</span>
-  </button>
-</div>
-
+          <a href="#contact">
+            <button className="flex items-center gap-2 bg-pink-500 hover:bg-pink-600 text-white text-lg md:text-xl font-semibold px-6 md:px-8 py-3 rounded-full shadow-lg border border-white hover:scale-105 transition-all duration-300 font-[Poppins]">
+            <FaCalendarAlt className="text-xl" />
+            <span>Book Appointment</span>
+          </button>
+          </a>
+        </div>
       </div>
     </div>
   );
